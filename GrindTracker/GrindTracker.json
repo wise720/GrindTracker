@@ -1,7 +1,7 @@
 {
-  "Author": "your name here",
-  "Name": "Sample Plugin",
-  "Punchline": "A short one-liner that shows up in /xlplugins.",
+  "Author": "wise720",
+  "Name": "GrindTracker",
+  "Punchline": "Tracks your Grind",
   "Description": "A description that shows up in /xlplugins. List any major slash-command(s).",
   "ApplicableVersion": "any",
   "Tags": [
