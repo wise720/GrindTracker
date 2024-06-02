@@ -7,10 +7,6 @@
     "ApplicableVersion": "any",
     "RepoUrl": "https://github.com/wise720/GrindTracker",
     "IconUrl": "",
-    "Tags": [
-    "Tracking",
-    "QoL"
-    ],
     "AssemblyVersion": "0.5.0",
     "DalamudApiLevel": 9,
     "IsHide": "False",
