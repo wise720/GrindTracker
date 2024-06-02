@@ -1,0 +1,15 @@
+{
+  "Author": "wise720",
+  "Name": "GrindTracker",
+  "Punchline": "Tracks your Grind",
+  "Description": "A description that shows up in /xlplugins. List any major slash-command(s).",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "sample",
+    "plugin",
+    "goats"
+  ],
+  "DownloadLinkInstall": "https://github.com/wise720/GrindTracker/releases/download/0.5.0/GrindTracker.zip",
+  "DownloadLinkTesting": "https://github.com/wise720/GrindTracker/releases/download/0.5.0/GrindTracker.zip",
+  "DownloadLinkUpdate": "https://github.com/wise720/GrindTracker/releases/download/0.5.0/GrindTracker.zip",
+}
