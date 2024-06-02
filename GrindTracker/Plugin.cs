@@ -68,8 +68,10 @@ public sealed class Plugin : IDalamudPlugin
             CommandManager.AddHandler("/gt", new CommandInfo((command, arguments) => MainWindow.Toggle()) { HelpMessage = "opens gui" });
             CommandManager.AddHandler("/gts", new CommandInfo(startTracker) { HelpMessage = "starts tracker" });
             CommandManager.AddHandler("/gte", new CommandInfo(((command, arguments) => Tracker.Stop())) { HelpMessage = "ends tracker" });
+            CommandManager.AddHandler("/gtr", new CommandInfo(((command, arguments) => Tracker = new Tracker())) { HelpMessage = "resets tracker" });
             CommandManager.AddHandler("/gtp", new CommandInfo((command, arguments) => Tracker.Print()) { HelpMessage = "prints tracker" });
-            DutyState.DutyStarted += PrintEvent;
+            DutyState.DutyStarted += DutyStarted;
+            DutyState.DutyCompleted += DutyCompleted;
             Plugin.DataLoader.loadData(this);
 
             Interface.UiBuilder.Draw += DrawUI;
@@ -93,7 +95,7 @@ public sealed class Plugin : IDalamudPlugin
     public void Dispose()
     {
         WindowSystem?.RemoveAllWindows();
-
+        Tracker.Stop();
         ConfigWindow?.Dispose();
         MainWindow?.Dispose();
         Chat?.Dispose();
@@ -111,11 +113,23 @@ public sealed class Plugin : IDalamudPlugin
         Tracker = new Tracker();
     }
 
-    private void  PrintEvent(object? event_obj, ushort eventid )
+    private void  DutyStarted(object? event_obj, ushort eventid )
     {
-        var val = AtkArrayDataHolder.Addresses.GetStringArrayData.Value+58;
-        Log.Error("{0}, {1}",event_obj ?? "", eventid);
-    } 
+        //var val = AtkArrayDataHolder.Addresses.GetStringArrayData.Value+58;
+        //Log.Error("{0}, {1}",event_obj ?? "", eventid);
+        if (Configuration.timeOnlyDuty)
+        {
+            Tracker.Start();
+        }
+    }
+
+    private void DutyCompleted(object? event_obj, ushort eventid)
+    {
+        if (Configuration.timeOnlyDuty)
+        {
+            Tracker.Stop();
+        }
+    }
     private void DrawUI() => WindowSystem.Draw();
 
     public void ToggleConfigUI() => ConfigWindow.Toggle();

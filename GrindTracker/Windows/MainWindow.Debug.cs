@@ -1,4 +1,8 @@
+using GrindTracker.Utils;
 using ImGuiNET;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace GrindTracker.Windows
 {
@@ -16,6 +20,7 @@ namespace GrindTracker.Windows
 
         private void Debug()
         {
+            ImGui.TextWrapped("These might break the current Tracker use with care");
             if(ImGui.Button("Load Test Data"))
             {
                 Plugin.Tracker.addGil(new Gil(1000));
@@ -27,7 +32,18 @@ namespace GrindTracker.Windows
                 {
                     Plugin.Tracker.AddItem(item);
                 }
-                ;
+            }
+
+            if (ImGui.Button("Set Time to 1h"))
+            {
+                
+                DateTime date = DateTime.Now;
+                List<Pair<DateTime, DateTime?>> tss = [new Pair<DateTime, DateTime?>(date, date + new TimeSpan(0,1,0,0))];
+
+                PropertyInfo prop = Plugin.Tracker.GetType().GetProperty("Timespans", BindingFlags.NonPublic | BindingFlags.Instance )!;
+
+                prop.SetValue(Plugin.Tracker, tss);
+
             }
         }
     }

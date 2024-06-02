@@ -11,17 +11,18 @@ using System.Text.Json.Serialization;
 
 namespace GrindTracker
 {
-    public class Tracker
+    public class Tracker : ICloneable
     {
         [JsonInclude]
         private List<Pair<DateTime, DateTime?>> Timespans { get; set; }
         [JsonInclude]
         public List<Item> Items { get; private set; }
         [JsonInclude]
-        private List<Exp> Exps { get;  set; }
+        public List<Exp> Exps { get; private set; }
         [JsonInclude]
-        private List<Gil> Gils { get;  set; }
+        public List<Gil> Gils { get; private set; }
      
+        public bool Running { get; private set; }
 
         public Tracker()
         {
@@ -30,15 +31,14 @@ namespace GrindTracker
             Items = new List<Item>();
             Exps = new List<Exp>();
             Gils = new List<Gil>();
-            Start();
         }
 
         public void Start()
         {
-            if (Timespans.Count > 0 && Timespans.Last().second == null)
-            {
+            if (Running)
                 return;
-            }
+
+            Running = true;
             Plugin.ChatGui.Print("Tracker Started");
             Timespans.Add(new Pair<DateTime, DateTime?>(DateTime.Now, null));
         }
@@ -63,8 +63,12 @@ namespace GrindTracker
 
         public void Stop()
         {
+            if (!Running)
+                return;
+            Running = false;
             Plugin.ChatGui.Print("Tracker Stopped");
             Timespans.Last().second = DateTime.Now;
+            Save();
         }
 
         public ulong TotalExp()
@@ -131,18 +135,17 @@ namespace GrindTracker
 
         public TimeSpan totalTimeSpan()
         {
-            TimeSpan ts = TimeSpan.Zero;
-            foreach (Pair<DateTime,DateTime?> timespan in Timespans)
-            {
-                ts += (timespan.second ?? DateTime.Now) - timespan.first;
-            }
-
-            return ts;
+            return Timespans.Aggregate(TimeSpan.Zero, (current, timespan) => current + ((timespan.second ?? DateTime.Now) - timespan.first));
         }
 
         private void Save()
         {
             Plugin.DataLoader.saveData(this);
+        }
+        
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }

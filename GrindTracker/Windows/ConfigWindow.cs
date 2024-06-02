@@ -28,7 +28,7 @@ public class ConfigWindow : Window, IDisposable
     public override void PreDraw()
     {
         // Flags must be added or removed before Draw() is being called, or they won't apply
-        if (Configuration.IsConfigWindowMovable)
+        if (Configuration.timeOnlyDuty)
         {
             Flags &= ~ImGuiWindowFlags.NoMove;
         }
@@ -49,10 +49,10 @@ public class ConfigWindow : Window, IDisposable
             Configuration.Save();
         }
 
-        var movable = Configuration.IsConfigWindowMovable;
-        if (ImGui.Checkbox("Movable Config Window", ref movable))
+        var timeOnlyDuty = Configuration.timeOnlyDuty;
+        if (ImGui.Checkbox("Track time only in Duty", ref timeOnlyDuty))
         {
-            Configuration.IsConfigWindowMovable = movable;
+            Configuration.timeOnlyDuty = timeOnlyDuty;
             Configuration.Save();
         }
     }

@@ -16,7 +16,7 @@ public partial class MainWindow : Window, IDisposable
     // So that the user will see "My Amazing Window" as window title,
     // but for ImGui the ID is "My Amazing Window##With a hidden ID"
     public MainWindow(Plugin plugin)
-        : base("Duty Tracker##dutyTracker")
+        : base("Grind Tracker##dutyTracker")
     {
         SizeConstraints = new WindowSizeConstraints
         {
@@ -39,6 +39,7 @@ public partial class MainWindow : Window, IDisposable
             {
                 MainTab();
                 ItemLogTab();
+                ExportTab();
                 DebugTab();
                 ImGui.EndTabBar();
             }
@@ -48,15 +49,21 @@ public partial class MainWindow : Window, IDisposable
         ImGuiHelpers.ScaledDummy(1.0f);
         if (ImGui.BeginChild("BottomBar", new Vector2(0, 0), false, 0))
         {
-            if (ImGui.Button("Start Tracker"))
+            if (!Plugin.Tracker.Running)
             {
-                Plugin.Tracker.Start();
+                if (ImGui.Button("Start Tracker"))
+                {
+                    Plugin.Tracker.Start();
+                }
             }
-            ImGui.SameLine();
-            if (ImGui.Button("Stop Tracker"))
+            else
             {
-                Plugin.Tracker.Stop();
+                if (ImGui.Button("Stop Tracker"))
+                {
+                    Plugin.Tracker.Stop();
+                }
             }
+
             ImGui.SameLine();
             if (ImGui.Button("Reset Tracker"))
             {

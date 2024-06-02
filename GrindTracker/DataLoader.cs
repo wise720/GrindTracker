@@ -37,7 +37,7 @@ namespace GrindTracker
             string fileName = DataPath;
             string jsonString = JsonSerializer.Serialize(tracker);
             File.WriteAllText(fileName, jsonString);
-
+            
         }
         
     }
