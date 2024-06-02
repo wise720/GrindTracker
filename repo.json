@@ -2,6 +2,7 @@
   {
     "Author": "wise720",
     "Name": "GrindTracker",
+    "InternalName": "GrindTracker",
     "Punchline": "Tracks your Grind",
     "Description": "Tracks your Grind",
     "ApplicableVersion": "any",
