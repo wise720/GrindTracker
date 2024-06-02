@@ -1,0 +1,17 @@
+version: 18
+jobs:
+- name: github mirror
+  steps:
+  - !PushRepository
+    name: Push to Remote
+    remoteUrl: https://github.com/wise720/GrindTracker.git
+    passwordSecret: github_access
+    withLfs: true
+    force: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  cpuRequirement: 250
+  memoryRequirement: 256
+  timeout: 3600
