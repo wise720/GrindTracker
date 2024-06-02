@@ -4,6 +4,8 @@
   "Punchline": "Tracks your Grind",
   "Description": "Tracks your Grind",
   "ApplicableVersion": "any",
+  "RepoUrl": "https://github.com/paissaheavyindustries/Lemegeton",
+  "IconUrl": "",
   "Tags": [
    "Tracking",
    "QoL"
