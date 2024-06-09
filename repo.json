@@ -7,14 +7,14 @@
     "Description": "Tracks your Grind",
     "ApplicableVersion": "any",
     "RepoUrl": "https://github.com/wise720/GrindTracker",
-    "AssemblyVersion": "0.5.0",
+    "AssemblyVersion": "0.5.1",
     "DalamudApiLevel": 9,
     "IsHide": "False",
     "IsTestingExclusive": "False",
     "LastUpdated": 0,
     "DownloadCount": 0,
-    "DownloadLinkInstall": "https://github.com/wise720/GrindTracker/releases/download/0.5.0/GrindTracker.zip",
-    "DownloadLinkTesting": "https://github.com/wise720/GrindTracker/releases/download/0.5.0/GrindTracker.zip",
-    "DownloadLinkUpdate": "https://github.com/wise720/GrindTracker/releases/download/0.5.0/GrindTracker.zip",
+    "DownloadLinkInstall": "https://github.com/wise720/GrindTracker/releases/download/0.5.1/GrindTracker.zip",
+    "DownloadLinkTesting": "https://github.com/wise720/GrindTracker/releases/download/0.5.1/GrindTracker.zip",
+    "DownloadLinkUpdate": "https://github.com/wise720/GrindTracker/releases/download/0.5.1/GrindTracker.zip",
   }
 ]

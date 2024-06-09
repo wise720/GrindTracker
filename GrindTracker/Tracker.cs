@@ -37,7 +37,6 @@ namespace GrindTracker
         {
             if (Running)
                 return;
-
             Running = true;
             Plugin.ChatGui.Print("Tracker Started");
             Timespans.Add(new Pair<DateTime, DateTime?>(DateTime.Now, null));
@@ -45,18 +44,24 @@ namespace GrindTracker
 
         public void AddItem(Item item)
         {
+            if (!Running)
+                return;
             Items.Add(item);
             Save();
         }
 
         public void addGil(Gil gil)
         {
+            if (!Running)
+                return;
             Gils.Add(gil);
             Save();
         }
 
         public void AddExp(Exp exp)
         {
+            if (!Running)
+                return;
             Exps.Add(exp);
             Save();
         }
