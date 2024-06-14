@@ -23,3 +23,8 @@ under linux:
 `~/.xlcore/pluginConfigs/GrindTracker/`  
 ### Debug (dont touch if you dont know what u doing)
 has some testing for dev  
+
+# TODO
+- [ ] have multiple Trackers
+- [ ] revamp UI
+- [ ] add more config options to Tracker
