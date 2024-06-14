@@ -42,21 +42,22 @@ public sealed class Plugin : IDalamudPlugin
     private MainWindow MainWindow { get; init; }
     
     public Tracker Tracker { get; set; }
-    public static  DataLoader DataLoader  = new DataLoader();
+    public static  DataLoader DataLoader  = new ();
     private Chat Chat { get; set; }
     
 #pragma warning disable CS8618
     public Plugin()
     {
+        
+        #if DEBUG
+        ChatGui.Print("DEBUG mode Active");
+        #endif
         try
         {
             //GameStarted = Process.GetCurrentProcess().StartTime.ToUniversalTime();
 
             Configuration = Interface.GetPluginConfig() as Configuration ?? new Configuration();
-
-            // you might normally want to embed resources and load them from the manifest stream
-            var file = new FileInfo(Path.Combine(Interface.AssemblyLocation.Directory?.FullName!, "goat.png"));
-
+            
             // ITextureProvider takes care of the image caching and dispose
             Log.Fatal("loaded sample");
             ConfigWindow = new ConfigWindow(this);
