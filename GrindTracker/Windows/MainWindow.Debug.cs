@@ -1,5 +1,7 @@
 using GrindTracker.Utils;
 using ImGuiNET;
+using Lumina.Excel.GeneratedSheets;
+using Serilog.Events;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -45,6 +47,9 @@ namespace GrindTracker.Windows
                 prop.SetValue(Plugin.Tracker, tss);
 
             }
+            
+
+        
         }
     }
 }

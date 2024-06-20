@@ -17,7 +17,7 @@ namespace GrindTracker.Windows
             }
         }
 
-   
+        private static bool treeOpen = false;
 
    
         private void Main()
@@ -26,7 +26,11 @@ namespace GrindTracker.Windows
             ImGui.Text($"Time elapsed: {((int) ts.TotalMinutes).ToString("D2")}:{ts.Seconds.ToString("D2")}");
             ImGui.Text($"Exp {Plugin.Tracker.TotalExp().ToString("N0")} | {Plugin.Tracker.AverageExp().ToString("F2")}/min");
             ImGui.Text($"Gil {Plugin.Tracker.TotalGil().ToString("N0")} | {Plugin.Tracker.AverageGil().ToString("F2")}/min");
-            if (ImGui.TreeNode($"Items | {Plugin.Tracker.Items.Count}"))
+
+            ImGui.SetNextItemOpen(treeOpen);
+            
+            treeOpen = ImGui.TreeNode($"Items | {Plugin.Tracker.Items.Count}");
+            if (treeOpen)
             {
                 foreach (KeyValuePair<string,Pair<int,double>> keyValuePair in Plugin.Tracker.GroupItems())
                 {
